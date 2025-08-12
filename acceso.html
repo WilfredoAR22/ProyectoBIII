@@ -1,0 +1,65 @@
+<!-- acceso.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Registro de Usuario</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #feb2b2; display: flex; height:100vh; align-items:center; justify-content:center; margin:0; }
+    .box { background:#ffc8c8; padding:2rem; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.1); width:300px; }
+    input { width:100%; padding:0.5rem; margin:0.5rem 0; }
+    button { width:100%; padding:0.6rem; background:#ff6f61; color:white; border:none; font-size:1rem; cursor:pointer; }
+    button:disabled { background:#ff34b1; cursor:not-allowed; }
+    .mensaje { color:red; font-size:0.9rem; height:1em; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h4>Registro / Confirmación</h4>
+    <form id="formReg">
+      <label>Usuario</label>
+      <input type="text" id="usuario" required autocomplete="username"/>
+      <label>Contraseña</label>
+      <input type="password" id="clave" required autocomplete="new-password"/>
+      <label>Confirmar Contraseña</label>
+      <input type="password" id="confirmar" required autocomplete="new-password"/>
+      <div id="msgPass" class="mensaje"></div>
+      <button type="submit" id="btnAceptar" disabled>Aceptar</button>
+    </form>
+  </div>
+
+  <script>
+    const clave = document.getElementById('clave');
+    const confirmar = document.getElementById('confirmar');
+    const msg = document.getElementById('msgPass');
+    const btn = document.getElementById('btnAceptar');
+
+    function validar() {
+      if (!clave.value || !confirmar.value) {
+        btn.disabled = true;
+        msg.textContent = '';
+      } else if (clave.value === confirmar.value) {
+        btn.disabled = false;
+        msg.textContent = '';
+      } else {
+        btn.disabled = true;
+        msg.textContent = 'Las contraseñas no coinciden';
+      }
+    }
+
+    clave.addEventListener('keyup', validar);
+    confirmar.addEventListener('keyup', validar);
+
+    document.getElementById('formReg').addEventListener('submit', function(e){
+      e.preventDefault();
+      // En este punto usuario y contraseña están definidos
+      // Guardarlos temporalmente en sesión (simulado)
+      sessionStorage.setItem('usuario', document.getElementById('usuario').value);
+      sessionStorage.setItem('clave', clave.value);
+      window.location.replace('./index.html'); // Redirigir al index
+    });
+  </script>
+</body>
+</html>
+

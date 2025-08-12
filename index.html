@@ -1,0 +1,107 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Adopta un Gatito</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+<style>
+  body{font-family:Arial,sans-serif;}
+  .hero{background:#ff9f9f;color:#333;padding:2rem 1rem;text-align:center;}
+  .hero h1{font-size:2.5rem;margin-bottom:.5rem;}
+  .hero a.btn{background:#ff6f61;color:white;}
+  .pet-card img{height:200px;object-fit:cover;width:100%;}
+  .pet-card .card-body{padding:1rem;}
+  footer{background:#333;color:white;text-align:center;padding:1rem;margin-top:2rem;}
+  .star { font-size:2rem; color: lightgray; cursor: pointer; }
+  .star.selected, .star:hover, .star:hover ~ .star { color: deeppink; }
+</style>
+</head>
+<body>
+<header class="bg-danger text-white py-3">
+  <div class="container">
+    <h1 class="mb-0">Adopta un Gatito</h1>
+    <nav class="mt-2">
+      <a href="#gatos" class="text-white mr-3">Gatos disponibles</a>
+      <a href="#como" class="text-white mr-3">Cómo adoptar</a>
+      <a href="#contacto" class="text-white">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h1>Encuentra tu nuevo amigo de cuatro patas</h1>
+    <p>Conoce a los gatitos que están buscando un hogar.</p>
+    <a href="#gatos" class="btn btn-lg">Ver Gatos Disponibles</a>
+  </div>
+</section>
+
+<section id="gatos" class="py-5">
+  <div class="container">
+    <h2 class="mb-4 text-center">Gatitos en adopción</h2>
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="card pet-card">
+          <img src="./gatito pelusa.jpg" alt="Gatito Pelusa">
+          <div class="card-body">
+            <h5 class="card-title">Pelusa</h5>
+            <p class="card-text">2 meses · Juguetón y sociable</p>
+            <a href="#" class="btn btn-outline-danger btn-block">Ver perfil y adoptar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="como" class="bg-light py-5">
+  <div class="container">
+    <h2 class="mb-3 text-center">¿Cómo adoptar?</h2>
+    <ol>
+      <li>Elige un gatito disponible arriba.</li>
+      <li>Haz clic en "Ver perfil" y completa el formulario.</li>
+      <li>Esperamos tu solicitud y te contactamos.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="contacto" class="py-5">
+  <div class="container">
+    <h2 class="mb-3 text-center">Contacto</h2>
+    <p class="text-center">Correo: adopta@gatos.org | Teléfono: +502 32856011</p>
+  </div>
+</section>
+
+<section id="calificacion" class="py-5">
+  <div class="container text-center">
+    <h2>Califica nuestra página</h2>
+    <div id="stars">
+      <span class="star" data-value="1">&#9733;</span>
+      <span class="star" data-value="2">&#9733;</span>
+      <span class="star" data-value="3">&#9733;</span>
+      <span class="star" data-value="4">&#9733;</span>
+      <span class="star" data-value="5">&#9733;</span>
+    </div>
+    <p id="mensaje"></p>
+  </div>
+</section>
+
+<footer>
+  © 2025 Adopta un Gatito
+</footer>
+
+<script>
+  const stars = document.querySelectorAll('.star');
+  const mensaje = document.getElementById('mensaje');
+  stars.forEach(s =>
+    s.addEventListener('click', function(){
+      const val = this.getAttribute('data-value');
+      stars.forEach(x => x.classList.toggle('selected', x.getAttribute('data-value') <= val));
+      mensaje.innerText = `¡Gracias por tu calificación de ${val}/5!`;
+    })
+  );
+</script>
+</body>
+</html>
